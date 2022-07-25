@@ -24,11 +24,12 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!state.user || !state.password) 
-      return toast.warn("All field are required")
+      return toast.warning("All field are required")
       
     if (!checked)
-      return toast.warn("Pls accept chapcha") 
+      return toast.warning("Pls accept chapcha") 
   } 
+  
   toast.warn("Pls accept chapcha") 
   
   useEffect(() => {
