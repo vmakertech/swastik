@@ -1,76 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import Users from './component/Users'
+import React, { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 export default function App() {
 
   const defaultValue = {
-    user: "Mohd Kamleen",
-    password: "kamleen123"
+    user: "",
+    password: ""
   }
 
 
   const [state, setState] = useState(defaultValue)
+  const [checked, setChecked] = useState(false)
 
   const changeValue = e => {
     let { target: { name, value } } = e
     setState({ ...state, [name]: value })
   }
 
-  const handleSubmit = () => {
-    Users.push(state) 
+  const setAgreed = (e) => {
+    setChecked(!checked)
   }
 
-  const tableData = 
-    Users.map((data, index) => {
-      return <tr>
-        <td> {index} </td>
-        <td> {data.user} </td>
-        <td> {data.password} </td>
-        <td>
-          <button key={index}>edit</button>
-          <button key={index} onClick={() => {Users.pop()}}>delete</button>
-        </td>
-      </tr>
-    })
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!state.user || !state.password) 
+      return toast.warn("All field are required")
+      
+    if (!checked)
+      return toast.warn("Pls accept chapcha") 
+  }
 
 
   useEffect(() => {
+    setChecked(false)
     setState(defaultValue)
   }, []);
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit}> */}
-      <input value={state.user}
-        name="user"
-        placeholder='user name'
-        onChange={changeValue}
-      /> <br />
+      <form onSubmit={handleSubmit}>
+        <input value={state.user}
+          name="user"
+          placeholder='user name'
+          onChange={changeValue}
+        /> <br />
 
-      <input
-        value={state.password}
-        name="password"
-        placeholder='password'
-        onChange={changeValue}
-      /> <br />
+        <input
+          value={state.password}
+          name="password"
+          placeholder='password'
+          onChange={changeValue}
+        /> <br />
+        <input type="checkbox" checked={checked} onChange={setAgreed} /> I'm not a robot <br />
 
-      <button onClick={handleSubmit}>
-        Submit
-      </button>
-      {/* </form> */}
-
-      <br /><br /><br />
-      <table border="1" cellSpacing={0}>
-        <tr>
-          <th>id</th>
-          <th>user</th>
-          <th>password</th>
-          <th>action</th>
-        </tr>
-        { tableData } 
-
-      </table>
+        <button>
+          Submit
+        </button>
+      </form>
 
     </>
   );
