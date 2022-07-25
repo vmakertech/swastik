@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify' 
 
 export default function App() {
 
@@ -28,9 +28,9 @@ export default function App() {
       
     if (!checked)
       return toast.warn("Pls accept chapcha") 
-  }
-
-
+  } 
+  toast.warn("Pls accept chapcha") 
+  
   useEffect(() => {
     setChecked(false)
     setState(defaultValue)
