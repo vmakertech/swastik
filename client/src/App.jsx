@@ -7,8 +7,7 @@ export default function App() {
     user: "",
     password: ""
   }
-
-
+ 
   const [state, setState] = useState(defaultValue)
   const [checked, setChecked] = useState(false)
 
@@ -29,8 +28,7 @@ export default function App() {
     if (!checked)
       return toast.warning("Pls accept chapcha") 
   } 
-  
-  toast.warn("Pls accept chapcha") 
+   
   
   useEffect(() => {
     setChecked(false)
@@ -39,7 +37,7 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form action='/' onSubmit={handleSubmit}>
         <input value={state.user}
           name="user"
           placeholder='user name'
