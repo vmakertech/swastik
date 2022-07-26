@@ -26,10 +26,13 @@ export default function App() {
       return toast.warning("All field are required")
       
     if (!checked)
-      return toast.warning("Pls accept chapcha") 
+      return toast.info("Pls accept chapcha") 
+
+   toast.success(state.password)
+   console.table(state)
   } 
-   
-  
+
+ 
   useEffect(() => {
     setChecked(false)
     setState(defaultValue)
