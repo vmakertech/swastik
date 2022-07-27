@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { toast } from 'react-toastify' 
+import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux' 
+import { addAdmin, addUser } from './action'
 
 export default function App() {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  console.log(user);
+
 
   const defaultValue = {
-    user: "",
-    password: ""
+    user: "Mohd Kamleen",
+    password: "kamleen123"
   }
  
   const [state, setState] = useState(defaultValue)
@@ -22,14 +28,16 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!state.user || !state.password) 
-      return toast.warning("All field are required")
+    if (!state.user) 
+      return toast.warning("Username required")
       
+    if (!state.password) 
+    return toast.warning("Password required")
+    
     if (!checked)
-      return toast.info("Pls accept chapcha") 
+      return toast.info("Accept our terms and condition") 
 
-   toast.success(state.password)
-   console.table(state)
+    dispatch(addUser("developer"))
   } 
 
  
@@ -60,6 +68,9 @@ export default function App() {
         </button>
       </form>
 
+      <button onClick={() => {dispatch(addAdmin("admin"))}}>admin add</button>
+ 
     </>
   );
 }
+

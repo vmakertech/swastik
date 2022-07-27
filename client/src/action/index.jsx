@@ -12,3 +12,16 @@ export const decrement = (e) => {
         e
     }
 }
+
+export const addUser = (user) => {
+    return {
+        type : "ADD_USER",
+        payload : user
+    }
+}
+export const addAdmin = (user) => {
+    return {
+        type : "ADD_ADMIN",
+        payload : user
+    }
+}
